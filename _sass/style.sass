@@ -1,0 +1,66 @@
+body
+  background-color: #ecf0f1
+
+  header
+    height: 100%
+    width: 100%
+    display: table
+    position: absolute
+    .description
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      color: #2c3e50
+      h1
+        margin: 5px
+        letter-spacing: .05em
+
+  footer
+    .toolnav
+      position: absolute
+      bottom: 20px
+      right: 20px
+
+  .toolnav, .toolbar
+    a
+      color: #000
+      text-decoration: none
+      opacity: .3
+      &:hover
+        cursor: pointer
+        opacity: .7
+
+  .note#skeleton
+    visibility: hidden
+    position: absolute
+
+  .note
+    min-height: 100px
+    min-width: 300px
+    position: fixed !important
+    margin-bottom: 0
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3)
+    .toolbar
+      float: right
+      a.on-edit
+        color: #18bc9c
+        opacity: .7
+        &:hover
+          opacity: 1
+
+    .panel-body
+      padding: 2px
+
+    .editor
+      resize: none
+      height: 100%
+      font-family: monospace
+      line-height: 1.2
+
+    .rendered-markdown
+      height: 100%
+      overflow: auto
+      padding: 5px
+      img
+        max-width: 100%
+        height: auto

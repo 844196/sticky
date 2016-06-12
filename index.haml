@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+#skeleton.panel.panel-default.note
+  .panel-heading
+    .panel-title
+      %i.fa.fa-sticky-note-o.fa-fw
+      %span.h5 Skeleton
+      %span.toolbar
+        %a.note-edit
+          %i.fa.fa-pencil.fa-fw
+        %a.note-close
+          %i.fa.fa-times.fa-fw
+  .panel-body
+    %textarea.form-control.editor{:style => 'display:none'}
+    .rendered-markdown{:style => 'display:block'}
+
+%header
+  .description
+    %i.fa.fa-sticky-note.fa-fw.fa-4x
+    %h1 Sticky
+    %small
+      You can create a new sticky note, when you right-click or
+      %kbd Shift
+      +
+      %kbd N
+
+%main
+
+%footer
+  .toolnav
+    %a{:onClick => 'tidyUp()'}
+      %i.fa.fa-clone.fa-fw.fa-lg
+    %a{:'data-toggle' => 'modal', :'data-target' => '#delete-confirm-modal'}
+      %i.fa.fa-trash.fa-fw.fa-lg
+  .modal.fade#delete-confirm-modal
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-body
+          Are you sure you want to all delete?
+        .modal-footer
+          %button.btn.btn-default{:type => 'button', :'data-dismiss' => 'modal'}
+            Close
+          %button.btn.btn-danger#clean{:type => 'button', :'data-dismiss' => 'modal', :onClick => 'allRemove()'}
+            Delete
+  %script{:src => 'assets/js/app.js'}
