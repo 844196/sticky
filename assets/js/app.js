@@ -175,7 +175,7 @@ $(function() {
   load();
 
   // 右クリックで新規作成
-  $('html').contextmenu(function(e) {
+  $('header').contextmenu(function(e) {
     stickyFactory(
       (e.clientX - (initialMinWidth / 2)),
       (e.clientY - (headingHeight / 2))
