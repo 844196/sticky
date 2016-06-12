@@ -9,6 +9,29 @@ initialMaxWidth  = $(window).width();
 headingHeight    = skeleton.find('.panel-heading').outerHeight(true);
 headingWidth     = skeleton.find('.panel-heading').outerWidth(true);
 
+// Markdown変換器
+renderer = new marked.Renderer();
+renderer.heading = function(text, level) {
+  var html = '';
+
+  if (level === 1 || level === 2) {
+    html =
+      '<div class="page-header">' +
+        '<h' + level + '>' + text + '</h' + level + '>' +
+      '</div>';
+  } else {
+    html = '<h' + level + '>' + text + '</h' + level + '>';
+  };
+
+  return html;
+};
+
+function markUpFactory(content) {
+  return marked(content, {
+    renderer: renderer
+  });
+};
+
 // UUID生成器
 // https://gist.github.com/jcxplorer/823878
 function generateUUID() {
@@ -37,7 +60,7 @@ function initialize(title, content, height) {
 
   // 初期値
   entity.find('.editor').text(content);
-  entity.find('.rendered-markdown').html(marked(content || ''));
+  entity.find('.rendered-markdown').html(markUpFactory(content || ''));
 
   // リサイズ・ドラッグの設定
   entity.resizable({
@@ -108,7 +131,7 @@ function editStart(target) {
 function editEnd(target) {
   var content = $(target).find('.editor').val();
   target.find('.note-edit').removeClass('on-edit');
-  target.find('.rendered-markdown').html(marked(content));
+  target.find('.rendered-markdown').html(markUpFactory(content));
   target.find('.rendered-markdown').css('display', 'block');
   target.find('.editor').css('display', 'none');
   save();
@@ -175,7 +198,7 @@ $(function() {
   load();
 
   // 右クリックで新規作成
-  $('html').contextmenu(function(e) {
+  $('header').contextmenu(function(e) {
     stickyFactory(
       (e.clientX - (initialMinWidth / 2)),
       (e.clientY - (headingHeight / 2))
