@@ -68,7 +68,8 @@ function initialize(title, content, height) {
     minWidth:   initialMinWidth
   });
   entity.draggable({
-    stack: 'div'
+    stack: 'div',
+    handle: '.panel-heading'
   });
 
   // 全体の高さ
@@ -125,6 +126,7 @@ function editStart(target) {
   target.find('.note-edit').addClass('on-edit');
   target.find('.rendered-markdown').css('display', 'none');
   target.find('.editor').css('display', 'block').focus();
+  target.css('z-index', topFrontElementIndex() + 1);
 };
 
 // 編集を終了する
@@ -193,6 +195,15 @@ function stickyFactory(x, y) {
   save();
 };
 
+function topFrontElementIndex() {
+  var indexes = [];
+  $('.note').each(function() {
+    indexes.push($(this).css('z-index'));
+  });
+
+  return Math.max.apply(null, indexes);
+};
+
 $(function() {
   // ページロード時、LocalStorageから既存のデータを読み込み
   load();
@@ -215,5 +226,10 @@ $(function() {
       );
       return false;
     };
+  });
+
+  // クリックで最前面に移動させる
+  $('.note').on('click', function() {
+    $(this).css('z-index', topFrontElementIndex() + 1);
   });
 });
