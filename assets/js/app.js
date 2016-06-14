@@ -227,4 +227,9 @@ $(function() {
       return false;
     };
   });
+
+  // クリックで最前面に移動させる
+  $('.note').on('click', function() {
+    $(this).css('z-index', topFrontElementIndex() + 1);
+  });
 });
