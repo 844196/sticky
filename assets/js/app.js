@@ -68,7 +68,8 @@ function initialize(title, content, height) {
     minWidth:   initialMinWidth
   });
   entity.draggable({
-    stack: 'div'
+    stack: 'div',
+    handle: '.panel-heading'
   });
 
   // 全体の高さ
