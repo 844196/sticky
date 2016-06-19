@@ -19,7 +19,6 @@
     "font-awesome": "fontawesome#^4.6.1",
     "jquery": "^2.2.3",
     "jquery-ui": "^1.11.4",
-    "marked": "^0.3.5",
-    "moment": "^2.13.0"
+    "marked": "^0.3.5"
   }
 }

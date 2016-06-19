@@ -1,0 +1,29 @@
+{
+  "name": "Sticky",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "postinstall": "mkdir -p node_modules/debug/dist && cp node_modules/debug/debug.js node_modules/debug/dist/ && bower install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline --hot",
+    "build": "webpack"
+  },
+  "author": "Masaya Takeda <844196@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "bower": "^1.7.9",
+    "bower-webpack-plugin": "^0.1.9",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

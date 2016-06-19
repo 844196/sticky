@@ -5,12 +5,11 @@
 ## Setup
 
 ```shell-session
-$ bundle install --path=vendor/bundle
-$ bower install
+$ npm install
 ```
 
 ## Develop
 
 ```shell-session
-$ bundle exec guard start
+$ npm run start
 ```
