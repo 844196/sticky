@@ -52,20 +52,6 @@ class MarkupOperation
   constructor()
   {
     this.renderer = new marked.Renderer()
-    this.renderer.heading = (text, level) => {
-      let html = ''
-
-      if (level === 1 || level === 2) {
-        html =
-          '<div class="page-header">' +
-            '<h' + level + '>' + text + '</h' + level + '>' +
-          '</div>'
-      } else {
-        html = '<h' + level + '>' + text + '</h' + level + '>'
-      }
-
-      return html
-    }
   }
 
   invoke(content)

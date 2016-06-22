@@ -63,16 +63,29 @@ body
       height: 100%
       overflow: auto
       padding: 5px
-      .page-header
+      word-break: break-word
+      line-height: 1.7
+      h1, h2, h3, h4, h5, h6
+        color: #2c3e50
         &:first-child
           margin-top: 0
-          h1, h2, h3, h4, h5, h6
-            margin-top: 10px
-        padding-bottom: 0
-        h2
-          margin-bottom: .2em
+      h2
+        margin-top: 1.5em
+        padding:
+          top: 10px
+          bottom: 10px
+          left: 10px
+        border-left: 5px solid #18bc9c
+      h3
+        margin-top: 1.3em
       img
         max-width: 100%
         height: auto
-      p
-        line-height: 1.7
+      pre
+        border-radius: 2px
+        border: none
+        color: #c5c8c6
+        background-color: #1d1f21
+        padding: 1em
+        code
+          font-family: 'source-code-pro', monospace
