@@ -155,6 +155,11 @@ class StickyNote
     this.instance.find('.rendered-markdown').css('display', 'block')
     this.instance.find('.editor').css('display', 'none')
   }
+
+  remove()
+  {
+    this.instance.remove()
+  }
 }
 
 class WhiteBoard
@@ -270,7 +275,7 @@ class WhiteBoard
 
   remove(note)
   {
-    note.instance.remove()
+    note.remove()
     delete this.notes[note.uuid]
   }
 
