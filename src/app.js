@@ -4,6 +4,9 @@ require('babel-polyfill')
 require('jquery')
 require('jquery-ui')
 require('marked')
+require('codemirror')
+require('../bower_components/codemirror/lib/codemirror.css')
+require('../bower_components/codemirror/mode/markdown/markdown.js')
 require('Umi')
 require('../bower_components/Umi/dist/js/bootstrap.js')
 require('fontawesome')
@@ -145,20 +148,34 @@ class StickyNote
     this.instance.find('.note-edit').addClass('on-edit')
     this.instance.find('.rendered-markdown').css('display', 'none')
     this.instance.find('.editor').css('display', 'block').focus()
+    this._cm = CodeMirror.fromTextArea(this.instance.find('.editor')[0], {
+      mode: 'markdown',
+      tabSize: 4,
+      indentUnit: 4,
+      lineWrapping: true,
+    })
+    this._isEditing = true
   }
 
   editEnd()
   {
+    this._cm.toTextArea()
     let content = this.instance.find('.editor').val()
     this.content = content
     this.instance.find('.note-edit').removeClass('on-edit')
     this.instance.find('.rendered-markdown').css('display', 'block')
     this.instance.find('.editor').css('display', 'none')
+    this._isEditing = false
   }
 
   remove()
   {
     this.instance.remove()
+  }
+
+  isEditing()
+  {
+    return this._isEditing
   }
 }
 
@@ -217,13 +234,8 @@ class WhiteBoard
     note.instance.appendTo(this.instance)
 
     note.instance.find('.note-edit').on('click', () => {
-      if (note.instance.find('.editor').css('display') === 'none') {
-        note.editStart()
-        this.save()
-      } else {
-        note.editEnd()
-        this.save()
-      }
+      note.isEditing() ? note.editEnd() : note.editStart()
+      this.save()
     })
 
     note.instance.find('.note-close').on('click', () => {
