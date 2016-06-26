@@ -52,6 +52,20 @@ class MarkupOperation
   constructor()
   {
     this.renderer = new marked.Renderer()
+    this.renderer.heading = (text, level) => {
+      if (level === 1) {
+        return ''
+          + `<h${level}>`
+            + text
+            + '<div class="modified_at">'
+              + '<i class="fa fa-clock-o fa-fw"></i>&nbsp;'
+              + `Updated at ${new Date().toLocaleString()}`
+            + '</div>'
+          + `</h${level}>`;
+      } else {
+        return `<h${level}>${text}</h${level}>`
+      }
+    }
   }
 
   invoke(content)
