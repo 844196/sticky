@@ -60,8 +60,7 @@ module.exports = {
       'jQuery': 'jquery',
       'window.jQuery': 'jquery',
       'marked': 'marked',
-      'moment': 'moment',
-      'CodeMirror': 'codemirror'
+      'moment': 'moment'
     })
   ],
 };
