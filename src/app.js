@@ -62,6 +62,16 @@ class MarkupOperation
         return `<h${level}>${text}</h${level}>`
       }
     }
+    this.renderer.listitem = (text) => {
+      if (text.match(/^\[[ x]\]\s*/)) {
+        let rtn = text
+          .replace(/^\[ \]\s*/, '<i class="fa fa-square-o fa-fw"></i>&nbsp;')
+          .replace(/^\[x\]\s*/, '<i class="fa fa-check-square-o fa-fw"></i>&nbsp;')
+        return '<li style="list-style:none">' + rtn + '</li>'
+      } else {
+        return '<li>' + text + '</li>'
+      }
+    }
   }
 
   invoke(content)
