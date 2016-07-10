@@ -2,7 +2,7 @@ var path = require('path');
 var Webpack = require('webpack');
 var BowerWebpackPlugin = require('bower-webpack-plugin');
 
-module.exports = {
+module.exports = [{
   context: __dirname + '/src',
   entry: {
     javascript: './app.js',
@@ -30,10 +30,6 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.(woff|woff2|svg|ttf|eot|otf)([\?]?.*)$/,
-        loader: 'file-loader?name=[name].[ext]'
-      },
-      {
         test: /\.(jpe?g|png|gif)$/i,
         loader: 'file-loader'
       },
@@ -41,6 +37,50 @@ module.exports = {
         test: /\.html$/,
         loader: 'file-loader?name=[name].[ext]'
       }
+    ]
+  },
+
+  plugins: [
+    new BowerWebpackPlugin({
+      excludes: /.*\.(less|scss)/
+    }),
+    new Webpack.ProvidePlugin({
+      '$': 'jquery',
+      'jQuery': 'jquery',
+      'window.jQuery': 'jquery',
+      'marked': 'marked'
+    })
+  ],
+}, {
+  context: __dirname + '/src',
+  entry: {
+    javascript: './style.js'
+  },
+
+  output: {
+    path: __dirname + '/dist',
+    filename: 'style.js'
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loaders: ['babel-loader']
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.(woff|woff2|svg|ttf|eot|otf)([\?]?.*)$/,
+        loader: 'file-loader?name=[name].[ext]'
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader: 'file-loader'
+      },
     ]
   },
 
@@ -59,8 +99,6 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery',
       'window.jQuery': 'jquery',
-      'marked': 'marked',
-      'moment': 'moment'
     })
   ],
-};
+}];

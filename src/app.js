@@ -3,12 +3,8 @@
 require('babel-polyfill')
 require('jquery')
 require('jquery-ui')
-require('marked')
-require('Umi')
-require('../bower_components/Umi/dist/js/bootstrap.js')
-require('fontawesome')
 require('../bower_components/jquery-ui/themes/base/jquery-ui.min.css')
-require('!style!css!sass!./style.sass')
+require('marked')
 
 const SKELETON = $('#skeleton')
 const WINDOW = {
@@ -18,7 +14,7 @@ const WINDOW = {
 const NOTE = {
   MINIMUM: {
     HEIGHT: SKELETON.outerHeight(true),
-    WIDTH: 300
+    WIDTH: SKELETON.outerWidth(true)
   },
   MAXIMUM: {
     HEIGHT: WINDOW.HEIGHT,
@@ -26,7 +22,7 @@ const NOTE = {
   },
   HEADING: {
     HEIGHT: SKELETON.find('.panel-heading').outerHeight(true),
-    WIDTH: 300
+    WIDTH: SKELETON.find('.panel-heading').outerWidth(true)
   }
 }
 

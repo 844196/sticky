@@ -1,0 +1,5 @@
+require('jquery')
+require('Umi')
+require('../bower_components/Umi/dist/js/bootstrap.js')
+require('fontawesome')
+require('!style!css!sass!./style.sass')
